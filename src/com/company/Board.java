@@ -15,9 +15,6 @@ public class Board extends JPanel implements ActionListener{
 
     public static final int HEIGHT = 500;
     public static final int WIDTH = 500;
-//    private JButton greenButton;
-//    private JButton blueButton;
-//    private JButton redButton;
     private JButton [][] pieces = new JButton [9][9];
     private static int licznik;
 
@@ -26,17 +23,9 @@ public class Board extends JPanel implements ActionListener{
         for ( int i = 0; i < 9; i++ )
             for ( int j = 0; j < 9; j++ )
             {
-                pieces [i][j] = new JButton( Integer.toString( 0 ) );
-//                licznik++;
+                //pieces [i][j] = new JButton( Integer.toString( 0 ) );
+                pieces [i][j] = new SudokuPieces( Integer.toString( 0 ) );
             }
-//        greenButton = new JButton("Green");
-//        blueButton = new JButton("Blue");
-//        redButton = new JButton("Red");
-
-//        greenButton.addActionListener(this);
-//        blueButton.addActionListener(this);
-//        redButton.addActionListener(this);
-
         setLayout(new GridLayout(9,9));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         for ( int i = 0; i < 9; i++ )
@@ -47,9 +36,6 @@ public class Board extends JPanel implements ActionListener{
                 add(pieces[i][j]);
             }
         }
-//        add(greenButton);
-//        add(blueButton);
-//        add(redButton);
     }
 
     @Override
@@ -57,18 +43,6 @@ public class Board extends JPanel implements ActionListener{
         Object source = e.getSource();
 
         ((JButton)source).setText( Integer.toString( licznik ) );
-        licznik+=2;
-//        if(source == greenButton)
-//        {
-//            greenButton.setText("Basia " + licznik);
-//            licznik +=1;
-//        }
-////            setBackground(Color.GREEN);
-//
-//        else if(source == blueButton)
-//            setBackground(Color.BLUE);
-//
-//        else if(source == redButton)
-//            setBackground(Color.RED);
+        licznik++;
     }
 }
