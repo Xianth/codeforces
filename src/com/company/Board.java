@@ -57,7 +57,7 @@ public class Board extends JPanel implements ActionListener{
         Object source = e.getSource();
 
         ((JButton)source).setText( Integer.toString( licznik ) );
-        licznik++;
+        licznik+=2;
 //        if(source == greenButton)
 //        {
 //            greenButton.setText("Basia " + licznik);
