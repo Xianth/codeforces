@@ -1,0 +1,87 @@
+#include <iostream>
+#include <sstream>
+#include <algorithm>
+#include <climits>
+#include <vector>
+#include <utility>
+#include <set>
+
+using namespace std;
+
+    struct mex
+    {
+        int from;
+        int to;
+        int length;
+        int mex_value;
+    };
+
+    struct lengthCmp{
+        bool operator() ( const mex &a, const mex &b) const
+        {
+            return (a.length < b.length);
+        }
+    };
+
+    bool FirstContainsSecond ( mex a, mex b)
+    {
+        return( b.from <= a.from and b.to >= a.to );
+    }
+
+int main()
+{
+    int n, m;
+    mex lol;
+    lol.from = 2;
+    cin >> n >> m;
+    int arr[n];
+
+    for ( int i = 0; i < n; ++i )
+        arr[i] = 0;
+
+    std::set<mex, lengthCmp> subArrs;
+    int result;
+    int tmp1, tmp2;
+    for ( int i = 0; i < m; ++i)
+    {
+        cin >> tmp1 >> tmp2;
+        mex tmp;
+        tmp.from = tmp1-1;
+        tmp.to = tmp2-1;
+        tmp.length = tmp2 - tmp1 + 1;
+        tmp.mex_value = tmp.length;
+        subArrs.insert(tmp);
+    }
+    typedef std::set<mex, lengthCmp>::iterator mex_iter;
+
+    for ( mex_iter iter = subArrs.begin(); iter != subArrs.end(); ++iter)
+    {
+        mex_iter currentIter = iter;
+        mex_iter nextIter = currentIter;
+        nextIter++;
+        if ( nextIter != subArrs.end() )
+        {
+            if ( FirstContainsSecond(*currentIter, *nextIter) )     //remove overSubArrays
+            {
+                subArrs.erase(nextIter);
+            }
+        }
+    }
+
+    for ( mex_iter iter = subArrs.begin(); iter != subArrs.end(); ++iter)   //fill arr
+    {
+        int counter = 0;
+        for ( int i = (*iter).from; i < (*iter).to; ++i)
+        {
+        }
+    }
+
+
+    // int i = 0;
+    // for ( mex_iter iter = subArrs.begin(); iter != subArrs.end(); ++iter)
+    // {
+    //     cout << i << " " << iter->length << endl;
+    // }
+
+
+}
